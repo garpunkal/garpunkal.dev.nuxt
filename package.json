@@ -33,6 +33,6 @@
     "tailwindcss": "^3.1.8"
   },
   "engines": {
-    "node": "16.13.x"
+    "node": "16.x.x"
   }
 }
