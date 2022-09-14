@@ -57,55 +57,64 @@ export default {
 		});
 	},
 	async asyncData({ $axios, $config: { DevToApiKey } }) {
-		const squidexUrl = "https://cloud.squidex.io/api/content/garpunkaldev/";
-		const squidexConfig = {
-			headers: {
-				"X-Flatten": true,
-				"X-NoResolveLanguages": 1,
-				"X-Languages": "en",
-				timeout: 1000,
-				retry: 3,
-				retryDelay: 4000,
-			},
-		};
+		
+		var projectsJson = [];
+		var experiencesJson = [];
+		var articlesJson = [];
 
-		const experienceData = await $axios.$get(
-			squidexUrl + "experience",
-			squidexConfig
-		);
-		const companyData = await $axios.$get(
-			squidexUrl + "company",
-			squidexConfig
-		);
-		const projectData = await $axios.$get(
-			squidexUrl + "project",
-			squidexConfig
-		);
-		// experiences
-		const experiencesJson = [];
-		for (const item of experienceData.items) {
-			// filter relations
-			const company = companyData.items.find(function (x) {
-				return x.id === item.data.company[0];
-			});
-			const projects = buildList(item.data.projects, projectData.items);
-			const contribs = buildList(item.data.contributions, projectData.items);
-			// map
-			experiencesJson.push(mapExperience(item, company, projects, contribs));
-		}
+		try {
+			const squidexUrl = "https://cloud.squidex.io/api/content/garpunkaldev/";
+			const squidexConfig = {
+				headers: {
+					"X-Flatten": true,
+					"X-NoResolveLanguages": 1,
+					"X-Languages": "en",
+					timeout: 1000,
+					retry: 3,
+					retryDelay: 4000,
+				},
+			};
 
-		// highlights
-		const projectsJson = [];
-		for (const item of projectData.items)
-			if (item.data.IsHighlight === true) projectsJson.push(mapProject(item));
+			const experienceData = await $axios.$get(
+				squidexUrl + "experience",
+				squidexConfig
+			);
+			const companyData = await $axios.$get(
+				squidexUrl + "company",
+				squidexConfig
+			);
+			const projectData = await $axios.$get(
+				squidexUrl + "project",
+				squidexConfig
+			);
 
-		projectsJson.sort(dynamicSortMultiple("-sortOrder", "title"));
-		experiencesJson.sort(dynamicSortMultiple("-orderDate"));
+			// experiences
+			for (const item of experienceData.items) {
+				// filter relations
+				const company = companyData.items.find(function (x) {
+					return x.id === item.data.company[0];
+				});
+				const projects = buildList(item.data.projects, projectData.items);
+				const contribs = buildList(item.data.contributions, projectData.items);
+				// map
+				experiencesJson.push(mapExperience(item, company, projects, contribs));
+			}
 
-		// articles
-		let devTo = new DevToSource(DevToApiKey);
-		var articlesJson = await devTo.fetchDevToArticles();
-		articlesJson.sort(dynamicSortMultiple("-published_at"));
+			// highlights
+			for (const item of projectData.items)
+				if (item.data.IsHighlight === true) projectsJson.push(mapProject(item));
+
+			projectsJson.sort(dynamicSortMultiple("-sortOrder", "title"));
+			experiencesJson.sort(dynamicSortMultiple("-orderDate"));
+		} catch {}
+
+
+		try {
+			// articles
+			let devTo = new DevToSource(DevToApiKey);
+			articlesJson = await devTo.fetchDevToArticles();
+			articlesJson.sort(dynamicSortMultiple("-published_at"));
+		} catch {}
 
 		return { experiencesJson, projectsJson, articlesJson };
 	},

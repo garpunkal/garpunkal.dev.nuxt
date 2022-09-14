@@ -2,15 +2,8 @@ require('dotenv').config()
 const { DEVTO_API_KEY } = process.env
 
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
-  dev: process.env.NODE_ENV !== 'production',
-
-  // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Gareth Wright - Technical Development Lead - C# .net MVC Developer',
     htmlAttrs: {
@@ -48,29 +41,18 @@ export default {
       { rel: 'icon', sizes: '32x32', type: '"image/png', href: '/favicon-32x32.png' },
       { rel: 'icon', sizes: '16x16', type: '"image/png', href: '/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
-
     ]
   },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.css',
   ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
     ['@nuxtjs/dotenv', { systemvars: true }]
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
@@ -80,13 +62,9 @@ export default {
   ],
   sitemap: {
     hostname: "https://garpunkal.dev",
-    gzip: true,
+    gzip: false,
     exclude: [""]
-  },
-
-  performance: {
-    gzip: process.env.NODE_ENV == 'development' || false
-  },
+  }, 
   robots: [
     {
       UserAgent: 'Googlebot',
@@ -103,16 +81,11 @@ export default {
       host: 'https://garpunkal.dev'
     }
   ],
-
   gtm: {
     id: 'GTM-54WJV5'
   },
-
   axios: {
-    // proxy: true
   },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {
       plugins: {
@@ -120,18 +93,39 @@ export default {
         autoprefixer: {},
       },
     },
+    html: {
+      minify:{
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true,
+        minifyURLs: true,
+        removeComments: true,
+        removeEmptyElements: true
+      }
+    }
   },
-
+  ignore: [
+    '.nuxt', // buildDir
+    // 'static', // dir.static
+    'dist', // generate.dir
+    'node_modules',
+    '.**/*',
+    '.*',
+    'README.md'
+  ],
   generate: {
-    subFolders: false // HTML files are generated according to the route path
+    subFolders: false 
   },
-
   loading: false,
-
   proxy: {
     '/api/v1': { target: 'https://dev.to/api/', pathRewrite: { '^/api/v1': '' } }
   },
-
   publicRuntimeConfig: {
     DevToApiKey: DEVTO_API_KEY
   }

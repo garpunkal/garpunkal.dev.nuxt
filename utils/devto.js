@@ -1,12 +1,10 @@
 const axios = require('axios')
-const _ = require('lodash')
 
 const ARTICLES_PER_PAGE = 100;
 class DevToSource {
     constructor(DEVTO_API_KEY) {
-this.apikey = DEVTO_API_KEY;
-
-     }
+        this.apikey = DEVTO_API_KEY;
+    }
 
     async sleep(ms) {
         new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,11 +14,10 @@ this.apikey = DEVTO_API_KEY;
         const articles = await axios.get(
             `/api/v1/articles/me/published?page=${page}&per_page=${ARTICLES_PER_PAGE}`,
             {
-                headers: { 
-                    'api-key': this.apikey, 
+                headers: {
+                    'api-key': this.apikey,
                     'accept': 'application/vnd.forem.api-v1+json'
-                 },
-               
+                },
             }
         )
         return articles
@@ -34,35 +31,16 @@ this.apikey = DEVTO_API_KEY;
         }
 
         if (resp.data.length === ARTICLES_PER_PAGE) {
-
             await this.sleep(100)
             return this.fetchAllUserArticles(page + 1, results.concat(resp.data))
         }
 
         return results.concat(resp.data);
-    }
-
-    async fetchArticleById(id) {
-        await this.sleep(1000)
-        const articles = await axios.get(`/api/v1/articles/${id}`)
-        return articles
-    }
-
-
-    async fetchAllUsersArticlesById(articleIds) {
-        const idsToQuery = articleIds.map(obj => this.fetchArticleById(obj))
-        const batchResp = await Promise.all(idsToQuery)
-        return batchResp.map(resp => resp.data)
-    }
-
+    } 
     async fetchDevToArticles() {
-        const allUserArticles = await this.fetchAllUserArticles()
-        const allArticleIds = allUserArticles.map(obj => obj.id)
-        const allArticlesByID = await this.fetchAllUsersArticlesById(allArticleIds)
-        const merge = (obj1, obj2) => ({ ...obj1, ...obj2 });
-        const mergedArticles = _.zipWith(allArticlesByID, allUserArticles, merge)
+        const articles = await this.fetchAllUserArticles()
         const addCollection = [];
-        for (const article of mergedArticles)
+        for (const article of articles)
             addCollection.push({
                 type_of: article.type_of,
                 id: article.id,
