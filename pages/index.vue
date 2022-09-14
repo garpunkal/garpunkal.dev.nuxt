@@ -56,7 +56,7 @@ export default {
 			});
 		});
 	},
-	async asyncData({ $axios, $config: { DEVTO_API_KEY }}) {
+	async asyncData({ $axios, $config: { DevToApiKey } }) {
 		const squidexUrl = "https://cloud.squidex.io/api/content/garpunkaldev/";
 		const squidexConfig = {
 			headers: {
@@ -102,10 +102,8 @@ export default {
 		projectsJson.sort(dynamicSortMultiple("-sortOrder", "title"));
 		experiencesJson.sort(dynamicSortMultiple("-orderDate"));
 
-		console.log($config.DEVTO_API_KEY);
-		let devTo = new DevToSource('Y5PHSbDNbrjt7CdMfBzBwmA3');
-
-		console.log(devTo);
+		// articles
+		let devTo = new DevToSource(DevToApiKey);
 		var articlesJson = await devTo.fetchDevToArticles();
 		articlesJson.sort(dynamicSortMultiple("-published_at"));
 
