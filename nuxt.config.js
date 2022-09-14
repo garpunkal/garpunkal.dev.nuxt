@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { DEVTO_API_KEY } = process.env
+const { DEVTO_API_KEY, NODE_ENV } = process.env
 
 export default {
   ssr: false,

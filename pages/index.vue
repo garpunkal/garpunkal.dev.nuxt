@@ -116,6 +116,7 @@ export default {
 			articlesJson.sort(dynamicSortMultiple("-published_at"));
 		} catch {}
 
+console.log(DevToApiKey);
 		return { experiencesJson, projectsJson, articlesJson };
 	},
 };
