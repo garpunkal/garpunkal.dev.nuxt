@@ -57,7 +57,6 @@ export default {
 		});
 	},
 	async asyncData({ $axios, $config: { DevToApiKey } }) {
-		
 		var projectsJson = [];
 		var experiencesJson = [];
 		var articlesJson = [];
@@ -108,7 +107,6 @@ export default {
 			experiencesJson.sort(dynamicSortMultiple("-orderDate"));
 		} catch {}
 
-
 		try {
 			// articles
 			let devTo = new DevToSource(DevToApiKey);
@@ -116,7 +114,6 @@ export default {
 			articlesJson.sort(dynamicSortMultiple("-published_at"));
 		} catch {}
 
-console.log(DevToApiKey);
 		return { experiencesJson, projectsJson, articlesJson };
 	},
 };

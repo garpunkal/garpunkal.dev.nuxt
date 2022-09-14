@@ -12,7 +12,7 @@ class DevToSource {
 
     async fetchArticles(page) {
         const articles = await axios.get(
-            `/api/v1/articles/me/published?page=${page}&per_page=${ARTICLES_PER_PAGE}`,
+            `https://dev.to/api/v1/articles/me/published?page=${page}&per_page=${ARTICLES_PER_PAGE}`,
             {
                 headers: {
                     'api-key': this.apikey,

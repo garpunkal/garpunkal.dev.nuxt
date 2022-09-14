@@ -123,9 +123,9 @@ export default {
     subFolders: false 
   },
   loading: false,
-  proxy: {
-    '/api/v1': { target: 'https://dev.to/api/', pathRewrite: { '^/api/v1': '' } }
-  },
+  // proxy: {
+  //   '/api/v1': { target: 'https://dev.to/api/', pathRewrite: { '^/api/v1': '' } }
+  // },
   publicRuntimeConfig: {
     DevToApiKey: DEVTO_API_KEY
   }
