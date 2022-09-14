@@ -6,16 +6,15 @@
 					Experience
 				</h3>
 			</div>
-			<div class="pt-0 pb-0 sm:items-start mx-auto" v-for="edge in items.edges" :key="edge.node.id">
-				<Experience :item="edge.node" />
+			<div class="pt-0 pb-0 sm:items-start mx-auto" v-for="item in items" :key="item.id">
+				<Experience :item="item" />
 			</div>
 		</div>
 	</section>
 </template>
 <script>
-import Experience from "@/components/experience.vue";
+
 export default {
-	components: { Experience },
-	props: { items: { type: Object, required: true } },
+	props: { items: { type: Array, required: true } },
 };
 </script>

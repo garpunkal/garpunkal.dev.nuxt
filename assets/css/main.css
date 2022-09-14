@@ -17,18 +17,6 @@
 		@apply text-gray-400 dark:text-brand hover:text-brand;
 	}
 }
-@layer utilities {
-	@variants dark,
-	hover {
-		.brightness-50 {
-			filter: brightness(0.5);
-		}
-
-		.brightness-100 {
-			filter: brightness(1);
-		}
-	}
-}
 
 @tailwind components;
 @tailwind utilities;

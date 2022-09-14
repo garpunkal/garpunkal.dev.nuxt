@@ -1,3 +1,7 @@
+require('dotenv').config()
+
+const { DEVTO_API_KEY } = process.env
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -50,11 +54,13 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   axios: {
@@ -75,6 +81,16 @@ export default {
     subFolders: false // HTML files are generated according to the route path
   },
 
-  loading: false
- 
+  loading: false,
+
+  proxy: {
+    '/api/v1': { target: 'https://dev.to/api/', pathRewrite: { '^/api/v1': '' } }
+  },
+
+  publicRuntimeConfig: {
+  },
+  
+  privateRuntimeConfig: {
+    DEVTO_API_KEY: DEVTO_API_KEY
+  }
 }

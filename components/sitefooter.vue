@@ -19,9 +19,9 @@
 				<p class="mx-auto mb-5 text-sm text-center">
 					Open-sourced at
 					<a href="https://github.com/garpunkal/garpunkal.dev" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="github">GitHub</a><br />Built with
-					<a href="https://squidex.io/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="SquidexCMS">SquidexCMS</a>,
-					<a href="https://gridsome.org/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="Gridsome">Gridsome</a>,
-					<a href="https://vuejs.org/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="Vue.js">Vue.js</a>,
+					<a href="https://squidex.io/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="SquidexCMS">SquidexCMS</a>,					
+					<a href="https://vuejs.org/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="Vue.js">vue.js</a>,
+					<a href="https://nuxtjs.org/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="Nuxt.js">nuxtjs</a>,
 					<a href="https://tailwindcss.com/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="TailwindCSS">TailwindCSS</a>.<br />Hosted with
 					<a href="https://vercel.com/" target="_blank" rel="noopener" class=" font-bold inline-flex text-white dark:text-gray-500 hover:text-brand items-center " title="Vercel">Vercel</a>.
 				</p>

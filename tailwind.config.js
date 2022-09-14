@@ -1,8 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
- 
-  darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
       sm: "375px",
@@ -59,9 +57,9 @@ module.exports = {
         "2xl-black": '0 25px 50px -12px rgba(0, 0, 0, 5)',
         "2xl-gold": '10px 10px 50px -20px rgba(231, 166, 26, 1)',
         "2xl-brand": '10px 10px 50px -20px rgba(7, 125, 160, 1)',
-            }
+      }
     }
-  },  
+  },
   plugins: [],
   darkMode: "class",
   content: [

@@ -3,7 +3,7 @@
 		<div class="md:pl-6 sm:mt-0 flex items-start justify-start xl:justify-end mb-5">
 			<a v-if="item.url" :href="item.url" target="_blank" rel="noopener" :title="item.title">
 				<picture>
-					<source type="image/webp" :srcset="item.logo.webp" />
+					<!-- <source type="image/webp" :srcset="item.logo.webp" /> -->
 					<img
 						:alt="item.logo.alt"
 						:src="item.logo.url"
@@ -18,7 +18,7 @@
 			</a>
 
 			<picture v-if="!item.url">
-				<source type="image/webp" :srcset="item.logo.webp" />
+				<!-- <source type="image/webp" :srcset="item.logo.webp" /> -->
 				<img :alt="item.logo.alt" :src="item.logo.url" :style="{ backgroundColor: item.logo.background }" class="rounded-lg lg:rounded-l-lg flex object-contain dark:brightness-50 dark:hover:brightness-100 w-100pixel h-100pixel ring-brand dark:ring-brand-dark ring-4" height="100" loading="lazy" :title="item.logo.alt" />
 			</picture>
 		</div>

@@ -16,7 +16,6 @@
 <script>
 import ProjectImage from "@/components/projectImage.vue";
 import ProjectImageAward from "@/components/projectImageAward.vue";
-
 export default {
 	components: { ProjectImage, ProjectImageAward},
 	props: {
