@@ -1,6 +1,6 @@
 # garpunkal.dev
 
-Personal website that uses SquidexCMS, Vue.js, TailwindCSS, GraphQL, and Nuxt.js to publish via web hooks to Vercel.
+Personal website that uses SquidexCMS, Vue.js, TailwindCSS, and Nuxt.js to publish via web hooks to Vercel.
 
 https://garpunkal.dev
 
